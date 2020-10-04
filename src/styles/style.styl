@@ -1,0 +1,569 @@
+body, html { 
+    margin: 0; 
+    padding: 0; 
+    width: 100;
+    overflow hidden
+    font-family 'Basic', sans-serif
+    background radial-gradient(50% 50% at 50% 50%, #FFFFFF 0%, #E0E0DE 100%)
+    z-index: -5
+}
+
+button
+    outline: none
+
+.app, canvas
+    transition: opacity 1.5s ease
+    opacity: 1
+
+canvas
+    position relative
+    z-index: 0
+
+.particles
+    z-index 2 
+
+#waveform
+    width: 100%
+    overflow hidden
+    wave
+        overflow hidden !important
+
+    canvas
+        z-index 55
+
+.particles
+    position absolute
+    z-index: 0
+    top 0
+    left 0
+    width: 100%
+    height 100%
+
+.loader 
+    width: 100vw
+    height 101vh
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: black;
+    z-index 125
+    transition: opacity 1.8s ease
+    opacity: 1
+
+    span
+        color white
+        letter-spacing: 5px
+        animation space-letters 1.2s ease-in-out infinite
+        animation-direction: alternate
+        transition: opacity 1s ease
+
+
+    .progress-bar
+        width: 100%
+        height 2px
+        // background: white
+        margin-top 80px
+        transform-origin: left 
+        transform scaleX(0)
+        will-change: transform
+        transition: transform 0.3s ease
+        position relative
+
+        &::before
+            content ''
+            height 100%
+            left 0
+            top 0
+            width: 100%
+            position absolute
+            z-index: 5
+            background-image: linear-gradient(transparent, #ffffff, #ffffff, transparent)
+            filter blur(1px)
+
+        &::after
+            content ''
+            height 12px
+            right 0
+            top -5px
+            width: 200px
+            position absolute
+            z-index: -5
+            opacity 1
+            filter: blur(2px)
+            background-image: radial-gradient(ellipse at right, #ddddff, transparent, transparent)
+            
+
+.top-bar
+    position absolute
+    z-index: 50
+    display: flex
+    justify-content: flex-start
+    width: 100%
+    padding: 25px
+    box-sizing: border-box
+
+    a
+        color: #ff5600
+        text-decoration: none
+        font-weight: bolder
+
+    a:first-of-type
+        margin-right: 15px
+    a:last-of-type
+        margin-left: auto
+
+.intro 
+    width: 100vw
+    height 101vh
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background: #0006;
+    z-index 15
+    transition: opacity 1.5s ease
+    opacity: 1
+    padding: 100px 0;
+    box-sizing: border-box;
+
+    h1
+        font-size: 48.8px;
+        line-height: 61px;
+        width: 45vw;
+        text-align: center;
+        color: #00000088
+    
+    em 
+        font-family: Alike;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 31.257px;
+        line-height: 39px;
+        color: #ffffffbb;
+        width: 30vw;
+        text-align: center;
+
+    p
+        color #ffffffbb
+
+    ul
+        color #ffffffbb
+        line-height: 1.85em
+        margin-top: 0
+
+    button
+        position relative
+        margin-top 50px
+        height 50px
+        width 50px
+        border-radius: 50%
+        border none
+        cursor: pointer
+        animation: rotate-text 6s linear infinite
+
+
+    label
+        &:hover
+            transform: scale(1.1)
+            transition: transform 0.2s linear
+        
+        text-transform: capitalize
+        color white
+        // position absolute
+        // top: 40%
+        // left -25%
+        position: relative
+        left: -10px
+        top -50px
+        for i in 0..9
+            .char{i}
+                cursor: pointer
+                transform: rotate((i * (160 / 9))deg)
+
+        // rotated-text(9, 360deg)
+        span 
+            position: absolute;
+            width: 20px;
+            left: 0;
+            top: 0;
+            transform-origin: bottom center;
+            height: 50px;
+
+.invisible
+    opacity 0
+
+.vanished
+    z-index -20
+
+.pannel-wrapper
+    position absolute
+    top 0
+    left 0
+    width: 100vw
+    height 100vh
+    display flex
+    justify-content: center
+    align-items: center
+
+.pannel
+    position absolute
+    box-sizing border-box
+    width calc(70vw - 640px)
+    padding 32px 4.5vw
+    right (320px + 16px)
+    top 190px
+    min-height calc(100vh - 420px)
+    // background rgba(0, 0, 0, 0.16);
+    transform-origin: center
+    display: flex
+    flex-direction: column
+    justify-content: space-between
+    align-items: center
+    z-index: 1
+    min-width: 600px
+
+    .content
+        h3
+            font-size 25px
+            line-height 31px
+        p
+            font-family 'Alike Angular', serif
+            font-size: 16px
+            line-height: 20px
+
+            a
+                display: block
+                color dimgrey
+                padding 5px 0
+
+    .content, #waveform, .audio-controls
+        transition: opacity 0.5s ease, transform 0s ease-out
+        will-change: opacity transform
+
+    .audio-controls
+        display: flex
+        align-items: center
+        justify-content: space-between
+        width: 50%
+
+        button
+            border-radius 50%
+            border 2px black solid
+            background: transparent
+            text-align: center
+            display: flex
+            justify-content: center
+            align-items: center
+            cursor: pointer
+            position: relative
+            transition: transform 0.1s ease
+
+            &::before
+                content: ''
+                width: 50px
+                height: 50px
+                background: #ddd
+                position: absolute
+                top: -2px
+                left -2px
+                border-radius: 50%
+                z-index: -2
+                transform: scale(0.8)
+
+            &::after
+                content: ''
+                width: 50px
+                height: 50px
+                background: #ccc
+                position: absolute
+                top: -2px
+                left -2px
+                border-radius: 50%
+                z-index: -1
+                transition: all 0.15s ease
+                transform: scale(1)
+
+            &:hover
+                transform: scale(1.2)
+                    
+                &::after
+                    transform: scale(0)
+
+            img
+                height: 80%
+                width: 80%
+                z-index: 100
+        .play
+            height: 50px
+            width 50px
+
+        .backward, .forward
+            height: 40px
+            width: 40px
+            &::before
+                width 40px
+                height 40px
+            &::after
+                width 40px
+                height 40px
+
+
+.changing-step
+    animation fold-and-unfold 2s
+    animation-timing-function cubic-bezier(.41,.31,.45,.74)
+    animation-iteration-count 1
+
+.fold
+    animation: fold 0.9s
+    animation-timing-function cubic-bezier(.41,.31,.45,.74)
+    animation-fill-mode: forwards
+    animation-iteration-count 1
+
+.unfold
+    animation: unfold 0.9s
+    animation-timing-function cubic-bezier(.41,.31,.45,.74)
+    animation-fill-mode: forwards
+    animation-iteration-count 1
+
+.changing-step .content, .changing-step #waveform, .changing-step .audio-controls
+    animation fade 2s
+    animation-timing-function cubic-bezier(.41,.31,.45,.74)
+    animation-iteration-count 1
+
+.fold .content, .fold #waveform, .fold .audio-controls
+    animation half-fade 0.15s
+    animation-timing-function cubic-bezier(.41,.31,.45,.74)
+    animation-iteration-count 1
+    animation-fill-mode: forwards
+
+.unfold .content, .unfold #waveform, .unfold .audio-controls
+    opacity: 1
+
+.unfold .content, .unfold #waveform, .unfold .audio-controls
+    animation fade 1s
+    animation-timing-function cubic-bezier(.41,.31,.45,.74)
+    animation-iteration-count 1
+    animation-direction: reverse
+    animation-fill-mode: forwards
+
+.controls
+    display: flex
+    width: 100%
+    position absolute
+    bottom 60px
+    z-index: 10
+
+    .inner
+        margin-left: calc((320px + 24px) + 28vw)
+        text-align center
+
+        button
+            border-radius 50%
+            border 2px black solid
+            background: none
+            width: 76px
+            height: 76px
+            cursor: pointer
+            overflow: hidden
+
+        .previous
+            margin-right: 2vw
+
+            img
+                transform: rotate(180deg)
+
+.help
+    position: absolute
+    height: 100%
+    display: flex
+    // flex-direction: column
+    // justify-content: center
+    align-items: center
+    width: 20vw
+    min-width: 300px
+    transition: transform 1s cubic-bezier(0, 0.92, 0.99, 1), background-color 1s ease, color 1s ease
+    transform: translateX(-18vw)
+    z-index: 60
+
+    ul
+        padding: 20px 40px
+        list-style: none
+        strong
+            display: block
+            margin-top: 15px
+
+    button.toggle
+        cursor: pointer
+        z-index: 30
+
+.revealed
+    transform: translateX(0) !important
+
+.switch-play-state
+    animation: switch-play-state 0.2s ease-in-out
+    animation-iteration-count: 1
+    animation-fill-mode: both
+
+.forward .research
+    animation: rotate-text 0.2s ease-in-out
+    animation-iteration-count: 1
+    animation-fill-mode: both
+
+.backward .research
+    animation: rotate-text 0.2s ease-in-out
+    animation-iteration-count: 1
+    animation-fill-mode: both
+    animation-direction: reverse
+
+@media screen and (max-width: 1496px)
+    .controls
+        .inner
+            margin-left: auto
+            margin-right: auto
+
+@media screen and (max-width: 976px)
+    .pannel
+        position: relative
+        right: 0
+        top 0
+@media screen and (max-width: 976px)
+    .pannel
+        width: 90%
+
+@media screen and (max-width: 1240px)
+    .help.revealed
+        background-color: #000000aa
+        color: #ccc
+    .help
+        transform: translateX(-270px)
+
+@media screen and (max-width: 680px)
+    body
+        overflow: scroll
+
+    // .top-bar
+    //     margin-top: 126px
+
+    .intro
+        padding: 100px 50px
+        overflow: scroll
+        height: initial
+
+        h1
+            font-size: 30px
+            line-height: 40px
+            width: 75vw
+
+        em 
+            font-size: 22px
+            line-height: 32px
+            width: 75vw 
+
+        p, ul
+            font-size: 0.9rem
+
+        ul
+            list-style: none
+            padding-left: 0
+
+        div
+            position: relative
+            // margin-bottom: 2400px
+
+    .help
+        transform: translateX(-277px)
+        ul
+            font-size: 12px
+
+    .pannel-wrapper
+        padding-top: 5vh
+        align-items: flex-start
+        .pannel
+            height: 70vh
+            width 85%
+            .content
+                h3
+                    font-size: 16px
+                    text-align: center
+                p
+                    font-size: 14px
+                    width: 75vw
+    .controls
+        bottom: 0
+        
+        .inner
+            width: 200px
+            display: flex
+            justify-content: space-between
+
+            button
+                width: 56px
+                height: 56px
+
+@keyframes fold-and-unfold {
+    0% { transform: scale(1, 1); }
+    25% { transform: scale(0.01, 1); }
+    45% { transform: scale(0.01, 0.01); }
+    55% { transform: scale(0.01, 0.01); }
+    75% { transform: scale(0.01, 1); }
+    100% { transform: scale(1, 1); }
+}
+
+@keyframes fold {
+    0% { transform: scale(1, 1); }
+    50% { transform: scale(0.00, 1); }
+    100% { transform: scale(0.00, 0.01); }
+}
+
+@keyframes unfold {
+    0% { transform: scale(0.00, 0.01); }
+    50% { transform: scale(0.00, 1); }
+    100% { transform: scale(1, 1); }
+}
+
+@keyframes fade {
+    0% { opacity: 1}
+    25% { opacity: 0}
+    75% { opacity: 0}
+    100% { opacity: 1}
+}
+
+// little hack cuz im tired
+@keyframes half-fade {
+    0% { opacity: 1}
+    100% { opacity: 0}
+}
+
+@keyframes space-letters {
+    0% { letter-spacing: 3px }
+    1% { letter-spacing: 3px }
+    99% { letter-spacing: 5px }
+    100% { letter-spacing: 5px }
+}
+
+@keyframes rotate-text {
+    from { transform: rotate(0deg) }
+    to { transform: rotate(360deg) }
+}
+
+@keyframes switch-play-state {
+    0% { transform: scale(1); filter: none; }
+    50% { transform: scale(0.3); filter: blur(1px); }
+    100% { transform: scale(1); filter: none; }
+}
+
+.audio-controls {}
+
+// rotated-text($num-letters, $angle-span, $angle-offset = 0deg)
+//   $angle-per-char = $angle-span / $num-letters;
+//   for $i in $num-letters
+//     $angle = $angle-offset + $angle-per-char * $i
+//     .char{$i} 
+//       transform rotate(($angle)deg)
