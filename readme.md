@@ -1,0 +1,1 @@
+Clone the project, run init.sh, and enjoy
