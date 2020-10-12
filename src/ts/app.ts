@@ -8,10 +8,7 @@ export default class Engine {
     renderer: THREE.WebGLRenderer
     lights: { ambient: THREE.AmbientLight, frontal: THREE.DirectionalLight }
     state: {
-        intro: boolean
-        step: number
         frameCounter: number
-        scroll: number
     }
     raycaster: THREE.Raycaster
     mouse: THREE.Vector2
@@ -19,7 +16,13 @@ export default class Engine {
     constructor() {
         this.scene = new THREE.Scene()
         this.scene.fog = new THREE.Fog(0xdddddd, 7, 20)
-
+        
+        this.state = {
+            frameCounter: 0
+        }
+        
+        this.raycaster = new THREE.Raycaster()
+        this.mouse = new THREE.Vector2(1, 1)
         
         this.camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 )
 
@@ -68,6 +71,8 @@ export default class Engine {
 
         // keep track of frame number to give custom rythm to animations
         this.state.frameCounter === 60 ? this.state.frameCounter = 0 : this.state.frameCounter++
+        
+        this.raycaster.setFromCamera( this.mouse, this.camera )
         
         this.renderer.render( this.scene, this.camera )
     }
